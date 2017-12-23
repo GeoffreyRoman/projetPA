@@ -8,5 +8,6 @@
   <packaging>pom</packaging>
   <modules>
   	<module>plugins</module>
+  	<module>moteur</module>
   </modules>
 </project>
