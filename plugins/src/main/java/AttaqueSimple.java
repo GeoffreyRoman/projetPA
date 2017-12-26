@@ -1,4 +1,3 @@
-package plugin;
 
 import annotation.Attaque;
 
