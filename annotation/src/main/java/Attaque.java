@@ -1,6 +1,7 @@
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
-//Annotation attaque
+@Retention(RetentionPolicy.RUNTIME)
 public @interface Attaque {
-	
-	 
+	String nom();
 }

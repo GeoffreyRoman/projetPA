@@ -1,12 +1,10 @@
 
 import java.util.Random;
 
-import annotation.Deplacement;
-import moteur.Robot;
 
 public class DeplacementSimple {
 
-	@Deplacement
+	@Deplacement(nom = "DeplacementSimple")
 	public void deplacement(Robot r) {
 		int arenaXMax = 450;
 		int arenaYMax = 450;

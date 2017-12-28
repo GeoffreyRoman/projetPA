@@ -1,5 +1,7 @@
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
-//Annotation deplacement
+@Retention(RetentionPolicy.RUNTIME)
 public @interface Deplacement {
-
+	String nom();
 }

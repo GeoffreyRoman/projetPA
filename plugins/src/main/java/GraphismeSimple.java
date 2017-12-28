@@ -1,8 +1,6 @@
-import annotation.Graphisme;
-
 public class GraphismeSimple {
 	
-	@Graphisme
+	@Graphisme(nom = "GraphismeSimple")
 	public void draw(){
 		
 	}
