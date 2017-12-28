@@ -1,5 +1,5 @@
-package annotation;
 
+//Annotation deplacement
 public @interface Deplacement {
 
 }

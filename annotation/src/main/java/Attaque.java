@@ -1,7 +1,6 @@
-package annotation;
 
+//Annotation attaque
 public @interface Attaque {
 	
 	 
-
 }

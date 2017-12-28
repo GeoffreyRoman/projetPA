@@ -1,5 +1,5 @@
-package annotation;
 
+//Anootation Graphisme
 public @interface Graphisme {
 
 }
