@@ -9,5 +9,6 @@
   <modules>
   	<module>plugins</module>
   	<module>moteur</module>
+  	<module>annotation</module>
   </modules>
 </project>
