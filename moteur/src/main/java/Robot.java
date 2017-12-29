@@ -52,11 +52,11 @@ public class Robot {
 		return height;
 	}
 
-	public Color getC() {
+	public Color getColor() {
 		return c;
 	}
 
-	public void setC(Color c) {
+	public void setColor(Color c) {
 		this.c = c;
 	}
 

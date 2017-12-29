@@ -17,6 +17,7 @@ public class Repository {
 	File base;
 	List<Class> listePluginsAttaque = new ArrayList<Class>();
 	List<Class> listePluginsDeplacment = new ArrayList<Class>();
+	List<Class> listePluginsGraphisme = new ArrayList<Class>();
 
 	public Repository(File base) {
 		this.base = base;
@@ -39,6 +40,7 @@ public class Repository {
 			for (Method method : methods) {
 				Annotation annotationAttaque = method.getAnnotation(Attaque.class);
 				Annotation annotationDeplacement = method.getAnnotation(Deplacement.class);
+				Annotation annotationGraphisme = method.getAnnotation(Graphisme.class);
 				Annotation[] a = method.getAnnotations();
 				if (annotationAttaque != null) {
 					listePluginsAttaque.add(classe);
@@ -48,6 +50,11 @@ public class Repository {
 				if (annotationDeplacement != null) {
 					listePluginsDeplacment.add(classe);
 					System.out.println(annotationDeplacement);
+					System.out.println(classe.getName());
+				}
+				if (annotationGraphisme != null) {
+					listePluginsGraphisme.add(classe);
+					System.out.println(annotationGraphisme);
 					System.out.println(classe.getName());
 				}
 			}
@@ -87,6 +94,10 @@ public class Repository {
 
 	public List<Class> getListePluginsDeplacment() {
 		return listePluginsDeplacment;
+	}
+	
+	public List<Class> getListePluginsGraphisme() {
+		return listePluginsGraphisme;
 	}
 
 	public static void main(String[] args) {
