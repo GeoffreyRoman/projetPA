@@ -1,3 +1,4 @@
+package plugins;
 import annotation.Attaque;
 import moteur.Robot;
 

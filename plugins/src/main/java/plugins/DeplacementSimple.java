@@ -1,3 +1,4 @@
+package plugins;
 
 import java.util.Random;
 
