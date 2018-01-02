@@ -1,3 +1,4 @@
+package moteur;
 
 
 import java.awt.Color;
@@ -9,6 +10,7 @@ public class Robot {
 	Color c;
 	String nom;
 	Graphics g;
+	Robot adversaire;
 
 	public Robot(int x, int y, int widht, int height, Color c, String nom) {
 		this.x = x;

@@ -1,4 +1,4 @@
-
+import moteur.Robot;
 
 public class AttaqueSimple {
 	

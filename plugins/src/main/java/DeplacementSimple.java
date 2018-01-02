@@ -1,6 +1,7 @@
 
 import java.util.Random;
 
+import moteur.Robot;
 
 public class DeplacementSimple {
 

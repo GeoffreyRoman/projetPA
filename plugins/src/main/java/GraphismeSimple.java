@@ -1,5 +1,7 @@
 import java.awt.Graphics;
 
+import moteur.Robot;
+
 public class GraphismeSimple {
 	
 	// Un robot simple est un simple rectangle

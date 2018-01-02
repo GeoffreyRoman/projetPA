@@ -1,3 +1,4 @@
+package moteur;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,6 +11,10 @@ import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.List;
+
+import Attaque;
+import Deplacement;
+import Graphisme;
 
 
 public class Repository {
