@@ -1,7 +1,9 @@
+package annotation;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Deplacement {
+public @interface Attaque {
 	String nom();
 }

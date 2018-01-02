@@ -1,5 +1,6 @@
 import java.awt.Graphics;
 
+import annotation.Graphisme;
 import moteur.Robot;
 
 public class GraphismeSimple {

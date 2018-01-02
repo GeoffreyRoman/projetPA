@@ -12,9 +12,9 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.List;
 
-import Attaque;
-import Deplacement;
-import Graphisme;
+import annotation.Attaque;
+import annotation.Deplacement;
+import annotation.Graphisme;
 
 
 public class Repository {

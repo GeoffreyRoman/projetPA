@@ -1,3 +1,4 @@
+import annotation.Attaque;
 import moteur.Robot;
 
 public class AttaqueSimple {
