@@ -21,10 +21,13 @@ import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 import javax.swing.border.EmptyBorder;
 
-public class FrameWithMenu {
+public class FrameWithMenu{
 	JFrame frame;
 	private JPanel contentPane;
 	Robot r = new Robot(60, 60, 50, 50, Color.RED, "Test");
+	
+	Class graphisme;
+	Class deplacement;
 	
 	void showFrame() {
 		if (frame == null) {
@@ -98,7 +101,7 @@ public class FrameWithMenu {
 	}
 
 	public void chargementGraphisme(Class classe) {
-
+		this.graphisme = classe;
 		Object myInstance;
 		try {
 			myInstance = classe.getConstructors()[0].newInstance();
@@ -113,14 +116,15 @@ public class FrameWithMenu {
 	}
 	
 	public void chargementDeplacement(Class classe) {
-
+		this.deplacement = classe;
 		Object myInstance;
 		try {
 			myInstance = classe.getConstructors()[0].newInstance();
 			Method method = classe.getMethod("deplacement", new Class[] { Robot.class });
 
 			method.invoke(myInstance, new Object[] { r });
-			frame.repaint();
+			frame.paintComponents(frame.getGraphics());
+			chargementGraphisme(graphisme);
 			
 		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
 				| SecurityException | NoSuchMethodException e) {
