@@ -24,6 +24,7 @@ import javax.swing.border.EmptyBorder;
 public class FrameWithMenu {
 	JFrame frame;
 	private JPanel contentPane;
+	Robot r = new Robot(60, 60, 50, 50, Color.RED, "Test");
 	
 	void showFrame() {
 		if (frame == null) {
@@ -103,7 +104,7 @@ public class FrameWithMenu {
 			myInstance = classe.getConstructors()[0].newInstance();
 			Method method = classe.getMethod("draw", new Class[] { Robot.class, Graphics.class });
 			// Pour tester, sinon aller chercher tous les robots du jeu.
-			Robot r = new Robot(60, 60, 50, 50, Color.RED, "Test");
+
 			method.invoke(myInstance, new Object[] { r, frame.getGraphics() });
 		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
 				| SecurityException | NoSuchMethodException e) {
@@ -117,8 +118,10 @@ public class FrameWithMenu {
 		try {
 			myInstance = classe.getConstructors()[0].newInstance();
 			Method method = classe.getMethod("deplacement", new Class[] { Robot.class });
-			Robot r = new Robot(60, 60, 50, 50, Color.RED, "Test");
+
 			method.invoke(myInstance, new Object[] { r });
+			frame.repaint();
+			
 		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
 				| SecurityException | NoSuchMethodException e) {
 			e.printStackTrace();

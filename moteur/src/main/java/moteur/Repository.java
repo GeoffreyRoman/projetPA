@@ -16,7 +16,6 @@ import annotation.Attaque;
 import annotation.Deplacement;
 import annotation.Graphisme;
 
-
 public class Repository {
 
 	File base;
@@ -32,38 +31,39 @@ public class Repository {
 		List<Class> classes = new ArrayList<Class>();
 		ArrayList<Path> paths = FileVisitor.visitFile(base.getAbsolutePath(), ".class");
 		for (Path path : paths) {
+			if (!path.toString().contains("test-classes")) {
+				String fileName = path.toString().replace(base.getAbsolutePath(), "");
+				String dir = base.getAbsolutePath() + "/classes/";
 
-			String fileName = path.toString().replace(base.getAbsolutePath(), "");
-			String dir = base.getAbsolutePath() + "/classes/";
-
-			fileName = fileName.replace(".class", "");
-			fileName = fileName.replaceAll("/", ".");
-			fileName = fileName.replaceAll("classes", "").substring(2);
-			PluginLoader mcl = new PluginLoader(dir);
-			Class<?> classe = mcl.loadClass(fileName);
-			Method[] methods = classe.getMethods();
-			for (Method method : methods) {
-				Annotation annotationAttaque = method.getAnnotation(Attaque.class);
-				Annotation annotationDeplacement = method.getAnnotation(Deplacement.class);
-				Annotation annotationGraphisme = method.getAnnotation(Graphisme.class);
-				Annotation[] a = method.getAnnotations();
-				if (annotationAttaque != null) {
-					listePluginsAttaque.add(classe);
-					System.out.println(annotationAttaque);
-					System.out.println(classe.getName());
+				fileName = fileName.replace(".class", "");
+				fileName = fileName.replaceAll("/", ".");
+				fileName = fileName.replaceAll("classes", "").substring(2);
+				PluginLoader mcl = new PluginLoader(dir);
+				Class<?> classe = mcl.loadClass(fileName);
+				Method[] methods = classe.getMethods();
+				for (Method method : methods) {
+					Annotation annotationAttaque = method.getAnnotation(Attaque.class);
+					Annotation annotationDeplacement = method.getAnnotation(Deplacement.class);
+					Annotation annotationGraphisme = method.getAnnotation(Graphisme.class);
+					Annotation[] a = method.getAnnotations();
+					if (annotationAttaque != null) {
+						listePluginsAttaque.add(classe);
+						System.out.println(annotationAttaque);
+						System.out.println(classe.getName());
+					}
+					if (annotationDeplacement != null) {
+						listePluginsDeplacment.add(classe);
+						System.out.println(annotationDeplacement);
+						System.out.println(classe.getName());
+					}
+					if (annotationGraphisme != null) {
+						listePluginsGraphisme.add(classe);
+						System.out.println(annotationGraphisme);
+						System.out.println(classe.getName());
+					}
 				}
-				if (annotationDeplacement != null) {
-					listePluginsDeplacment.add(classe);
-					System.out.println(annotationDeplacement);
-					System.out.println(classe.getName());
-				}
-				if (annotationGraphisme != null) {
-					listePluginsGraphisme.add(classe);
-					System.out.println(annotationGraphisme);
-					System.out.println(classe.getName());
-				}
+				classes.add(classe);
 			}
-			classes.add(classe);
 		}
 		return classes;
 	}
@@ -90,8 +90,6 @@ public class Repository {
 			return files;
 		}
 	}
-	
-	
 
 	public List<Class> getListePluginsAttaque() {
 		return listePluginsAttaque;
@@ -100,7 +98,7 @@ public class Repository {
 	public List<Class> getListePluginsDeplacment() {
 		return listePluginsDeplacment;
 	}
-	
+
 	public List<Class> getListePluginsGraphisme() {
 		return listePluginsGraphisme;
 	}
