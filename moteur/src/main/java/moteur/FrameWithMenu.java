@@ -24,6 +24,8 @@ import javax.swing.KeyStroke;
 import javax.swing.border.EmptyBorder;
 
 import annotation.Graphisme;
+import plugins.DeplacementSimple;
+import plugins.GraphismeSimple;
 
 public class FrameWithMenu {
 	JFrame frame;
@@ -33,6 +35,11 @@ public class FrameWithMenu {
 	Class graphisme;
 	Class deplacement;
 	Class barreDeVie;
+	
+	FrameWithMenu(){
+		deplacement = new DeplacementSimple().getClass();
+		graphisme = new GraphismeSimple().getClass();
+	}
 
 	void showFrame() {
 		if (frame == null) {
