@@ -1,4 +1,5 @@
 package moteur;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -6,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -21,14 +23,17 @@ import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 import javax.swing.border.EmptyBorder;
 
-public class FrameWithMenu{
+import annotation.Graphisme;
+
+public class FrameWithMenu {
 	JFrame frame;
 	private JPanel contentPane;
 	Robot r = new Robot(60, 60, 50, 50, Color.RED, "Test");
-	
+
 	Class graphisme;
 	Class deplacement;
-	
+	Class barreDeVie;
+
 	void showFrame() {
 		if (frame == null) {
 			frame = new JFrame("Robot War");
@@ -45,6 +50,7 @@ public class FrameWithMenu{
 
 	@SuppressWarnings("serial")
 	void buildMenu() {
+		r.setVie(10); // A Supprimer
 		JMenuBar bar = new JMenuBar();
 		frame.setJMenuBar(bar);
 		JMenu fileM = new JMenu("Fichier");
@@ -101,38 +107,57 @@ public class FrameWithMenu{
 	}
 
 	public void chargementGraphisme(Class classe) {
-		this.graphisme = classe;
-		Object myInstance;
-		try {
-			myInstance = classe.getConstructors()[0].newInstance();
-			Method method = classe.getMethod("draw", new Class[] { Robot.class, Graphics.class });
-			// Pour tester, sinon aller chercher tous les robots du jeu.
+		if (classe != null) {
+			Object myInstance;
+			try {
+				myInstance = classe.getConstructors()[0].newInstance();
+				Method method = classe.getMethod("draw", new Class[] { Robot.class, Graphics.class });
+				// Pour tester, sinon aller chercher tous les robots du jeu.
 
-			method.invoke(myInstance, new Object[] { r, frame.getGraphics() });
-		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
-				| SecurityException | NoSuchMethodException e) {
-			e.printStackTrace();
+				if (method.getAnnotation(Graphisme.class).nom().equals("BarreDeVie")) {
+					barreDeVie = classe;
+				} else {
+					this.graphisme = classe;
+				}
+				method.invoke(myInstance, new Object[] { r, frame.getGraphics() });
+			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
+					| InvocationTargetException | SecurityException | NoSuchMethodException e) {
+				e.printStackTrace();
+			}
 		}
 	}
-	
-	public void chargementDeplacement(Class classe) {
-		this.deplacement = classe;
-		Object myInstance;
-		try {
-			myInstance = classe.getConstructors()[0].newInstance();
-			Method method = classe.getMethod("deplacement", new Class[] { Robot.class });
 
-			method.invoke(myInstance, new Object[] { r });
-			frame.paintComponents(frame.getGraphics());
-			chargementGraphisme(graphisme);
-			
-		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
-				| SecurityException | NoSuchMethodException e) {
-			e.printStackTrace();
+	public void chargementDeplacement(Class classe) {
+		if (classe != null) {
+			this.deplacement = classe;
+			Object myInstance;
+			try {
+				myInstance = classe.getConstructors()[0].newInstance();
+				Method method = classe.getMethod("deplacement", new Class[] { Robot.class });
+
+				method.invoke(myInstance, new Object[] { r });
+				frame.paintComponents(frame.getGraphics());
+				chargementGraphisme(graphisme);
+				chargementGraphisme(barreDeVie);
+
+			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
+					| InvocationTargetException | SecurityException | NoSuchMethodException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
 	public static void main(String[] args) {
-		new FrameWithMenu().showFrame();
+		FrameWithMenu fwm = new FrameWithMenu();
+		fwm.showFrame();
+		
+		while(true) {
+			fwm.chargementDeplacement(fwm.deplacement);
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }
