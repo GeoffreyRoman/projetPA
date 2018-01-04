@@ -6,7 +6,7 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 public class Robot {
-	int x, y, widht, height, vie;
+	int x, y, widht, height, vie, energie;
 	Color c;
 	String nom;
 	Graphics g;
@@ -14,6 +14,7 @@ public class Robot {
 
 	public Robot(int x, int y, int widht, int height, Color c, String nom) {
 		this.vie = 100;
+		this.energie = 3;
 		this.x = x;
 		this.y = y;
 		this.widht = widht;
@@ -81,5 +82,17 @@ public class Robot {
 	
 	public void enleveVie(int degat){
 		this.setVie(this.getVie() - degat);
+	}
+	
+	public void enleveEnergie(int baisse){
+		this.setEnergie(this.getEnergie() - baisse);
+	}
+
+	public int getEnergie() {
+		return energie;
+	}
+
+	public void setEnergie(int energie) {
+		this.energie = energie;
 	}
 }
