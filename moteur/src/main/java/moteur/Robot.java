@@ -1,9 +1,7 @@
 package moteur;
 
-
 import java.awt.Color;
 import java.awt.Graphics;
-import javax.swing.JPanel;
 
 public class Robot {
 	int x, y, widht, height, vie, energie;
@@ -22,7 +20,7 @@ public class Robot {
 		this.c = c;
 		this.nom = nom;
 	}
-	
+
 	public void setGraphics(Graphics g) {
 		this.g = g;
 	}
@@ -35,7 +33,7 @@ public class Robot {
 	public int getX() {
 		return x;
 	}
-	
+
 	public void setX(int x) {
 		this.x = x;
 	}
@@ -79,25 +77,36 @@ public class Robot {
 	public void setVie(int vie) {
 		this.vie = vie;
 	}
-	
-	public int getEnergie(){
+
+	public int getEnergie() {
 		return energie;
 	}
-	
-	public void setEnergie(int energie){
+
+	public void setEnergie(int energie) {
 		this.energie = energie;
 	}
-	
-	public void enleveVie(int degat){
+
+	/**
+	 * Methode permettant de ritirer de la vie d'un robot
+	 * 
+	 * @param degat
+	 */
+	public void enleveVie(int degat) {
 		this.setVie(this.getVie() - degat);
 	}
-	
-	public void consomationEnergie(int consomationEnergie){
-		this.setEnergie(this.getEnergie()-consomationEnergie);
+
+	/**
+	 * Methode permettant de consommer l'energie d'un robot
+	 * 
+	 * @param consomationEnergie
+	 */
+	public void consomationEnergie(int consomationEnergie) {
+		this.setEnergie(this.getEnergie() - consomationEnergie);
 	}
-	
+
 	/**
 	 * Methode permettant de savoir si un robot est touche par un projectile
+	 * 
 	 * @param posXDebut
 	 * @param posYDebut
 	 * @param posXFin
@@ -105,24 +114,26 @@ public class Robot {
 	 * @param trajectoire
 	 * @return boolean touche = true / non touche = false
 	 */
-	public boolean robotTouche(double posXDebut, double posYDebut, double posXFin,
-			double posYFin, int trajectoire) {
-			boolean result = false;
-			switch(trajectoire)
-			{
-				case 0: // Le robot attaque a droite
-					result = (((this.x+50) <= posXFin) && (this.x >= posXDebut)) && ((this.y <= posYFin) && ((this.y+50) >= posYFin));
-					break;
-				case 1: // Le robot attaque en bas
-					result = ((posXFin <= (this.x + 50)) && (posXFin >= (this.x))) && (((this.y+50) <= posYFin) && (this.y >= posYDebut));
-					break;
-				case 2: // Le robot attaque a gauche
-					result = (((this.x+50) <= posXDebut) && (this.x >= posXFin)) && ((this.y <= posYFin) && ((this.y+50) >= posYFin));
-					break;
-				case 3: // Le robot attaque en haut
-					result = ((posXFin <= (this.x + 50)) && (posXFin >= (this.x))) && ((this.y >= posYFin) && ((this.y+50) <= posYDebut));
-					break;
-			}
-			return result;
+	public boolean robotTouche(double posXDebut, double posYDebut, double posXFin, double posYFin, int trajectoire) {
+		boolean result = false;
+		switch (trajectoire) {
+		case 0: // Le robot attaque a droite
+			result = (((this.x + 50) <= posXFin) && (this.x >= posXDebut))
+					&& ((this.y <= posYFin) && ((this.y + 50) >= posYFin));
+			break;
+		case 1: // Le robot attaque en bas
+			result = ((posXFin <= (this.x + 50)) && (posXFin >= (this.x)))
+					&& (((this.y + 50) <= posYFin) && (this.y >= posYDebut));
+			break;
+		case 2: // Le robot attaque a gauche
+			result = (((this.x + 50) <= posXDebut) && (this.x >= posXFin))
+					&& ((this.y <= posYFin) && ((this.y + 50) >= posYFin));
+			break;
+		case 3: // Le robot attaque en haut
+			result = ((posXFin <= (this.x + 50)) && (posXFin >= (this.x)))
+					&& ((this.y >= posYFin) && ((this.y + 50) <= posYDebut));
+			break;
+		}
+		return result;
 	}
 }

@@ -4,23 +4,16 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
-import java.awt.event.InputEvent;
-import java.awt.event.KeyEvent;
 import java.io.File;
-import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.AbstractAction;
-import javax.swing.Action;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
-import javax.swing.KeyStroke;
 import javax.swing.border.EmptyBorder;
 
 import annotation.Graphisme;
@@ -35,8 +28,8 @@ public class FrameWithMenu {
 	Class graphisme;
 	Class deplacement;
 	Class barreDeVie;
-	
-	FrameWithMenu(){
+
+	FrameWithMenu() {
 		deplacement = new DeplacementSimple().getClass();
 		graphisme = new GraphismeSimple().getClass();
 	}
@@ -157,8 +150,8 @@ public class FrameWithMenu {
 	public static void main(String[] args) {
 		FrameWithMenu fwm = new FrameWithMenu();
 		fwm.showFrame();
-		
-		while(true) {
+
+		while (true) {
 			fwm.chargementDeplacement(fwm.deplacement);
 			try {
 				Thread.sleep(100);

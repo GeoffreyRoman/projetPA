@@ -1,11 +1,11 @@
 package moteur;
 
 public class Projectile {
-	
+
 	private int x, y, taille, direction;
 	private Robot attaquant, cible;
-	
-	public Projectile(Robot attaquant,Robot cible) {
+
+	public Projectile(Robot attaquant, Robot cible) {
 		this.taille = 100;
 		this.attaquant = attaquant;
 		this.cible = cible;
@@ -18,7 +18,7 @@ public class Projectile {
 	public int getY() {
 		return y;
 	}
-	
+
 	public void setX(int x) {
 		this.x = x;
 	}
@@ -42,5 +42,5 @@ public class Projectile {
 	public Robot getCible() {
 		return cible;
 	}
-	
+
 }
