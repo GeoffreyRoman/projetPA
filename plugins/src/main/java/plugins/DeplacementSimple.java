@@ -17,7 +17,7 @@ public class DeplacementSimple {
 
 		if (newX + r.getX() > arenaXMax) {
 			r.setX(r.getX() - newX);
-		} else if (newX + r.getX() < 50) {
+		} else if (newX + r.getX() < 100) {
 			r.setX(r.getX() + newX);
 		} else {
 			r.setX(r.getX() + (newX * (-1 + ((newX % 2) * 2))));
@@ -25,7 +25,7 @@ public class DeplacementSimple {
 
 		if (newY + r.getY() > arenaYMax) {
 			r.setY(r.getY() - newY);
-		} else if (newY + r.getY() < 50) {
+		} else if (newY + r.getY() < 100) {
 			r.setY(r.getY() + newY);
 		} else {
 			r.setY(r.getY() + (newY * (-1 + ((newY % 2) * 2))));

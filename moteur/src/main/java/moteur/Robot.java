@@ -80,10 +80,19 @@ public class Robot {
 		this.vie = vie;
 	}
 	
+	public int getEnergie(){
+		return energie;
+	}
+	
+	public void setEnergie(int energie){
+		this.energie = energie;
+	}
+	
 	public void enleveVie(int degat){
 		this.setVie(this.getVie() - degat);
 	}
 	
+<<<<<<< HEAD
 	public void enleveEnergie(int baisse){
 		this.setEnergie(this.getEnergie() - baisse);
 	}
@@ -94,5 +103,9 @@ public class Robot {
 
 	public void setEnergie(int energie) {
 		this.energie = energie;
+=======
+	public void consomationEnergie(int consomationEnergie){
+		this.setEnergie(this.getEnergie()-consomationEnergie);
+>>>>>>> d45c3269a3e9f9b73516b30de2f70e607991787c
 	}
 }
