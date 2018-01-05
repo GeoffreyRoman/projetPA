@@ -94,4 +94,34 @@ public class Robot {
 	public void consomationEnergie(int consomationEnergie){
 		this.setEnergie(this.getEnergie()-consomationEnergie);
 	}
+	
+	/**
+	 * Methode permettant de savoir si un robot est touche par un projectile
+	 * @param posXDebut
+	 * @param posYDebut
+	 * @param posXFin
+	 * @param posYFin
+	 * @param trajectoire
+	 * @return boolean touche = true / non touche = false
+	 */
+	public boolean robotTouche(double posXDebut, double posYDebut, double posXFin,
+			double posYFin, int trajectoire) {
+			boolean result = false;
+			switch(trajectoire)
+			{
+				case 0: // Le robot attaque a droite
+					result = (((x+50) <= posXFin) && (x >= posXDebut)) && ((y <= posYFin) && ((y+50) >= posYFin));
+					break;
+				case 1: // Le robot attaque en bas
+					result = ((posXFin <= (x + 50)) && (posXFin >= (x))) && (((y+50) <= posYFin) && (y >= posYDebut));
+					break;
+				case 2: // Le robot attaque a gauche
+					result = (((x+50) <= posXDebut) && (x >= posXFin)) && ((y <= posYFin) && ((y+50) >= posYFin));
+					break;
+				case 3: // Le robot attaque en haut
+					result = ((posXFin <= (x + 50)) && (posXFin >= (x))) && ((y >= posYFin) && ((y+50) <= posYDebut));
+					break;
+			}
+			return result;
+	}
 }
