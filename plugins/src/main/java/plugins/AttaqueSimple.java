@@ -10,20 +10,14 @@ public class AttaqueSimple {
 
 	private static final int degatMini = 10;
 	private static final int degatMaxi = 30;
-<<<<<<< HEAD
-
-	@Attaque(nom = "AttaqueSimple")
-	public void attaque(Projectile p, Robot cible) {
-=======
 	private GraphismeAttaque g;
-	
+
 	public AttaqueSimple() {
 		g = new GraphismeAttaque();
 	}
 
 	@Attaque(nom = "AttaqueSimple")
 	public void attaque(Graphics gr, Projectile p, Robot cible) {
->>>>>>> 66681e803ef574ea4c4bb8e2926709e8205174c0
 		int trajectoire;
 		if (cible.getX() >= p.getAttaquant().getX() - 50 && cible.getX() < p.getAttaquant().getX() + 50
 				&& (p.getAttaquant().getEnergie() - 2) >= 0) {
@@ -35,10 +29,7 @@ public class AttaqueSimple {
 				trajectoire = 1; // Le projectile par vers le bas
 				p.setX(p.getAttaquant().getX() + 25);
 				p.setY(p.getAttaquant().getY() + 50);
-<<<<<<< HEAD
-=======
 				g.drawAttaque(gr, p, trajectoire);
->>>>>>> 66681e803ef574ea4c4bb8e2926709e8205174c0
 				if (p.getCible().robotTouche(p.getX(), p.getY(), p.getX(), p.getY() + p.getTaille(), trajectoire)) {
 					toucher(p);
 				}
@@ -49,10 +40,7 @@ public class AttaqueSimple {
 				trajectoire = 3; // Le projectile part vers le haut
 				p.setX(p.getAttaquant().getX() + 25);
 				p.setY(p.getAttaquant().getY());
-<<<<<<< HEAD
-=======
 				g.drawAttaque(gr, p, trajectoire);
->>>>>>> 66681e803ef574ea4c4bb8e2926709e8205174c0
 				if (p.getCible().robotTouche(p.getX(), p.getY(), p.getX(), p.getY() - p.getTaille(), trajectoire)) {
 					toucher(p);
 				}
@@ -68,10 +56,7 @@ public class AttaqueSimple {
 				trajectoire = 0; // Le projectile part a droite
 				p.setX(p.getAttaquant().getX() + 50);
 				p.setY(p.getAttaquant().getY() + 25);
-<<<<<<< HEAD
-=======
 				g.drawAttaque(gr, p, trajectoire);
->>>>>>> 66681e803ef574ea4c4bb8e2926709e8205174c0
 				if (p.getCible().robotTouche(p.getX(), p.getY(), p.getX() + p.getTaille(), p.getY(), trajectoire)) {
 					toucher(p);
 				}
@@ -82,22 +67,12 @@ public class AttaqueSimple {
 				trajectoire = 2; // Le projectile part a gauche
 				p.setX(p.getAttaquant().getX());
 				p.setY(p.getAttaquant().getY() + 25);
-<<<<<<< HEAD
-=======
 				g.drawAttaque(gr, p, trajectoire);
->>>>>>> 66681e803ef574ea4c4bb8e2926709e8205174c0
 				if (p.getCible().robotTouche(p.getX(), p.getY(), p.getX() - p.getTaille(), p.getY(), trajectoire)) {
 					toucher(p);
 				}
 			}
 		}
-<<<<<<< HEAD
-=======
-	}
-
-	public void toucher(Projectile p) {
-		p.getCible().enleveVie((int) (Math.random() * (degatMaxi - degatMini)) + degatMini);
->>>>>>> 66681e803ef574ea4c4bb8e2926709e8205174c0
 	}
 
 	public void toucher(Projectile p) {
