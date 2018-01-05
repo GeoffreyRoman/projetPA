@@ -92,21 +92,8 @@ public class Robot {
 		this.setVie(this.getVie() - degat);
 	}
 	
-<<<<<<< HEAD
-	public void enleveEnergie(int baisse){
-		this.setEnergie(this.getEnergie() - baisse);
-	}
-
-	public int getEnergie() {
-		return energie;
-	}
-
-	public void setEnergie(int energie) {
-		this.energie = energie;
-=======
 	public void consomationEnergie(int consomationEnergie){
 		this.setEnergie(this.getEnergie()-consomationEnergie);
->>>>>>> d45c3269a3e9f9b73516b30de2f70e607991787c
 	}
 	
 	/**
@@ -124,16 +111,16 @@ public class Robot {
 			switch(trajectoire)
 			{
 				case 0: // Le robot attaque a droite
-					result = (((x+50) <= posXFin) && (x >= posXDebut)) && ((y <= posYFin) && ((y+50) >= posYFin));
+					result = (((this.x+50) <= posXFin) && (this.x >= posXDebut)) && ((this.y <= posYFin) && ((this.y+50) >= posYFin));
 					break;
 				case 1: // Le robot attaque en bas
-					result = ((posXFin <= (x + 50)) && (posXFin >= (x))) && (((y+50) <= posYFin) && (y >= posYDebut));
+					result = ((posXFin <= (this.x + 50)) && (posXFin >= (this.x))) && (((this.y+50) <= posYFin) && (this.y >= posYDebut));
 					break;
 				case 2: // Le robot attaque a gauche
-					result = (((x+50) <= posXDebut) && (x >= posXFin)) && ((y <= posYFin) && ((y+50) >= posYFin));
+					result = (((this.x+50) <= posXDebut) && (this.x >= posXFin)) && ((this.y <= posYFin) && ((this.y+50) >= posYFin));
 					break;
 				case 3: // Le robot attaque en haut
-					result = ((posXFin <= (x + 50)) && (posXFin >= (x))) && ((y >= posYFin) && ((y+50) <= posYDebut));
+					result = ((posXFin <= (this.x + 50)) && (posXFin >= (this.x))) && ((this.y >= posYFin) && ((this.y+50) <= posYDebut));
 					break;
 			}
 			return result;
