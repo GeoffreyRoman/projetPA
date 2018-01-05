@@ -37,6 +37,7 @@ public class Repository {
 
 				fileName = fileName.replace(".class", "");
 				fileName = fileName.replaceAll("/", ".");
+				fileName = fileName.replaceAll("\\\\", ".");
 				fileName = fileName.replaceAll("classes", "").substring(2);
 				PluginLoader mcl = new PluginLoader(dir);
 				Class<?> classe = mcl.loadClass(fileName);
