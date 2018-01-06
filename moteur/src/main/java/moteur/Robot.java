@@ -9,9 +9,10 @@ public class Robot {
 	String nom;
 	Graphics g;
 	Robot adversaire;
+	Projectile p;
 
 	public Robot(int x, int y, int widht, int height, Color c, String nom) {
-		this.vie = 100;
+		this.vie = 10;
 		this.energie = 3;
 		this.x = x;
 		this.y = y;
@@ -86,6 +87,14 @@ public class Robot {
 		this.energie = energie;
 	}
 
+	public Projectile getP() {
+		return p;
+	}
+
+	public Robot getAdversaire() {
+		return adversaire;
+	}
+
 	/**
 	 * Methode permettant de ritirer de la vie d'un robot
 	 * 
@@ -135,5 +144,16 @@ public class Robot {
 			break;
 		}
 		return result;
+	}
+	
+	/**
+	 * Methode permettant de s'affronter
+	 * @param r
+	 */
+	public static void attributionAdversaire(Robot r1, Robot r2){
+		r1.adversaire = r2;
+		r2.adversaire = r1;
+		r1.p = new Projectile(r1, r1.adversaire);
+		r2.p = new Projectile(r2, r2.adversaire);
 	}
 }

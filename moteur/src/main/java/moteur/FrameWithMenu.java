@@ -17,28 +17,36 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import annotation.Graphisme;
+import plugins.AttaqueSimple;
 import plugins.DeplacementSimple;
 import plugins.GraphismeSimple;
 
 public class FrameWithMenu {
 	JFrame frame;
 	private JPanel contentPane;
-	Robot r = new Robot(60, 60, 50, 50, Color.RED, "Test");
+	Robot r1;
+	Robot r2;
 
+	Class attaque;
 	Class graphisme;
 	Class deplacement;
 	Class barreDeVie;
+	Class nomRobot;
 
-	FrameWithMenu() {
+	FrameWithMenu(Robot r1,Robot r2) {
+		this.r1 = r1;
+		this.r2 = r2;
+		attaque = new AttaqueSimple().getClass();
 		deplacement = new DeplacementSimple().getClass();
 		graphisme = new GraphismeSimple().getClass();
 	}
+	
 
 	void showFrame() {
 		if (frame == null) {
 			frame = new JFrame("Robot War");
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			frame.setBounds(100, 100, 450, 300);
+			frame.setBounds(100, 100, 900, 900);
 			contentPane = new JPanel();
 			contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 			contentPane.setLayout(new BorderLayout(0, 0));
@@ -50,7 +58,8 @@ public class FrameWithMenu {
 
 	@SuppressWarnings("serial")
 	void buildMenu() {
-		r.setVie(10); // A Supprimer
+		FrameWithMenu fwm = this;
+		r1.setVie(10); // A Supprimer
 		JMenuBar bar = new JMenuBar();
 		frame.setJMenuBar(bar);
 		JMenu fileM = new JMenu("Fichier");
@@ -116,10 +125,13 @@ public class FrameWithMenu {
 
 				if (method.getAnnotation(Graphisme.class).nom().equals("BarreDeVie")) {
 					barreDeVie = classe;
+				} else if(method.getAnnotation(Graphisme.class).nom().equals("NomRobot")){
+					nomRobot = classe;
 				} else {
 					this.graphisme = classe;
 				}
-				method.invoke(myInstance, new Object[] { r, frame.getGraphics() });
+				method.invoke(myInstance, new Object[] { r1, frame.getGraphics() });
+				method.invoke(myInstance, new Object[] { r2, frame.getGraphics() });
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 					| InvocationTargetException | SecurityException | NoSuchMethodException e) {
 				e.printStackTrace();
@@ -135,10 +147,12 @@ public class FrameWithMenu {
 				myInstance = classe.getConstructors()[0].newInstance();
 				Method method = classe.getMethod("deplacement", new Class[] { Robot.class });
 
-				method.invoke(myInstance, new Object[] { r });
+				method.invoke(myInstance, new Object[] { r1 });
+				method.invoke(myInstance, new Object[] { r2 });
 				frame.paintComponents(frame.getGraphics());
 				chargementGraphisme(graphisme);
 				chargementGraphisme(barreDeVie);
+				chargementGraphisme(nomRobot);
 
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 					| InvocationTargetException | SecurityException | NoSuchMethodException e) {
@@ -147,17 +161,17 @@ public class FrameWithMenu {
 		}
 	}
 
-	public static void main(String[] args) {
-		FrameWithMenu fwm = new FrameWithMenu();
-		fwm.showFrame();
-
-		while (true) {
-			fwm.chargementDeplacement(fwm.deplacement);
-			try {
-				Thread.sleep(100);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-	}
+//	public static void main(String[] args) {
+//		FrameWithMenu fwm = new FrameWithMenu();
+//		fwm.showFrame();
+//
+//		while (true) {
+//			fwm.chargementDeplacement(fwm.deplacement);
+//			try {
+//				Thread.sleep(100);
+//			} catch (InterruptedException e) {
+//				e.printStackTrace();
+//			}
+//		}
+//	}
 }

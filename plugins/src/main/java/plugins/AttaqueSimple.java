@@ -9,12 +9,12 @@ import moteur.Robot;
 
 public class AttaqueSimple {
 
-	private static final int degatMini = 10;
-	private static final int degatMaxi = 30;
+	private static final int degatMini = 1;
+	private static final int degatMaxi = 5;
 
 	@Attaque(nom = "AttaqueSimple")
 	public void attaque(Graphics gr, Projectile p, Robot cible) {
-		gr.setColor(Color.BLACK);
+		gr.setColor(Color.GREEN);
 		int trajectoire;
 		if (cible.getX() >= p.getAttaquant().getX() - 50 && cible.getX() < p.getAttaquant().getX() + 50
 				&& (p.getAttaquant().getEnergie() - 2) >= 0) {
@@ -29,6 +29,7 @@ public class AttaqueSimple {
 				gr.drawLine(p.getX(), p.getY(), p.getX(), p.getY() + p.getTaille());
 				if (p.getCible().robotTouche(p.getX(), p.getY(), p.getX(), p.getY() + p.getTaille(), trajectoire)) {
 					toucher(p);
+					System.out.println(p.getAttaquant().getNom() + " touche " + cible.getNom() + " en tirant vers le bas !");
 				}
 			/**
 			 * Si la cible est au dessus du tireur
@@ -40,6 +41,7 @@ public class AttaqueSimple {
 				gr.drawLine(p.getX(), p.getY(), p.getX(), p.getY() - p.getTaille());
 				if (p.getCible().robotTouche(p.getX(), p.getY(), p.getX(), p.getY() - p.getTaille(), trajectoire)) {
 					toucher(p);
+					System.out.println(p.getAttaquant().getNom() + " touche " + cible.getNom() + " en tirant vers le haut !");
 				}
 			}
 		}
@@ -56,6 +58,7 @@ public class AttaqueSimple {
 				gr.drawLine(p.getX(), p.getY(), p.getX() + p.getTaille(), p.getY());
 				if (p.getCible().robotTouche(p.getX(), p.getY(), p.getX() + p.getTaille(), p.getY(), trajectoire)) {
 					toucher(p);
+					System.out.println(p.getAttaquant().getNom() + " touche " + cible.getNom() + " en tirant vers la droite !");
 				}
 			/**
 			 * Si la cible se trouve a gauche du tireur
@@ -67,6 +70,7 @@ public class AttaqueSimple {
 				gr.drawLine(p.getX(), p.getY(), p.getX() - p.getTaille(), p.getY());
 				if (p.getCible().robotTouche(p.getX(), p.getY(), p.getX() - p.getTaille(), p.getY(), trajectoire)) {
 					toucher(p);
+					System.out.println(p.getAttaquant().getNom() + " touche " + cible.getNom() + " en tirant vers la gauche !");
 				}
 			}
 		}
