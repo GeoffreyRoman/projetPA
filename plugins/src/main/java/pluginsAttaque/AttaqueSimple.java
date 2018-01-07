@@ -1,4 +1,4 @@
-package plugins;
+package pluginsAttaque;
 
 import java.awt.Color;
 import java.awt.Graphics;

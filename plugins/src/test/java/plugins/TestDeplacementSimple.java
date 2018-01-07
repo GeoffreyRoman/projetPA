@@ -7,11 +7,12 @@ import java.awt.Color;
 import org.junit.Test;
 
 import moteur.Robot;
+import pluginsDeplacement.DeplacementSimple;
 
 public class TestDeplacementSimple {
 
 	/**
-	 * Test de la méthode deplacement
+	 * Test de la mï¿½thode deplacement
 	 */
 	@Test
 	public void testDeplacementAleatoire() {

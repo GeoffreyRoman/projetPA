@@ -17,9 +17,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import annotation.Graphisme;
-import plugins.AttaqueSimple;
-import plugins.DeplacementSimple;
-import plugins.GraphismeSimple;
+import pluginsAttaque.AttaqueSimple;
+import pluginsDeplacement.DeplacementSimple;
+import pluginsGraphisme.GraphismeSimple;
 
 public class FrameWithMenu {
 	JFrame frame;
@@ -59,11 +59,10 @@ public class FrameWithMenu {
 	@SuppressWarnings("serial")
 	void buildMenu() {
 		FrameWithMenu fwm = this;
-		r1.setVie(10); // A Supprimer
 		JMenuBar bar = new JMenuBar();
 		frame.setJMenuBar(bar);
 		JMenu fileM = new JMenu("Fichier");
-		JMenu menuDynamic = new JMenu("Plugins");
+		JMenu menuDynamic = new JMenu("Plugins Graphiques");
 		bar.add(fileM);
 
 		fileM.add(new AbstractAction("Save") {
@@ -79,27 +78,27 @@ public class FrameWithMenu {
 
 		try {
 			r.load();
-			List<Class> attaqueClass = r.getListePluginsAttaque();
-			List<Class> deplacementClass = r.getListePluginsDeplacment();
+//			List<Class> attaqueClass = r.getListePluginsAttaque();
+//			List<Class> deplacementClass = r.getListePluginsDeplacment();
 			List<Class> graphismeClass = r.getListePluginsGraphisme();
 
-			for (final Class<?> classe : attaqueClass) {
-				menuDynamic.add(new AbstractAction(classe.getName()) {
-					public void actionPerformed(ActionEvent arg0) {
-						System.out.println("Click sur plugin attaque : " + classe.getName());
-					}
-
-				});
-			}
-			for (final Class<?> classe : deplacementClass) {
-				menuDynamic.add(new AbstractAction(classe.getName()) {
-					public void actionPerformed(ActionEvent arg0) {
-						chargementDeplacement(classe);
-						System.out.println("Click sur plugin deplacement : " + classe.getName());
-					}
-
-				});
-			}
+//			for (final Class<?> classe : attaqueClass) {
+//				menuDynamic.add(new AbstractAction(classe.getName()) {
+//					public void actionPerformed(ActionEvent arg0) {
+//						System.out.println("Click sur plugin attaque : " + classe.getName());
+//					}
+//
+//				});
+//			}
+//			for (final Class<?> classe : deplacementClass) {
+//				menuDynamic.add(new AbstractAction(classe.getName()) {
+//					public void actionPerformed(ActionEvent arg0) {
+//						chargementDeplacement(classe);
+//						System.out.println("Click sur plugin deplacement : " + classe.getName());
+//					}
+//
+//				});
+//			}
 			for (final Class<?> classe : graphismeClass) {
 				menuDynamic.add(new AbstractAction(classe.getName()) {
 					public void actionPerformed(ActionEvent arg0) {
