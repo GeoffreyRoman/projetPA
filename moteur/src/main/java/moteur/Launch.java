@@ -1,6 +1,7 @@
 package moteur;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Launch {
@@ -25,10 +26,13 @@ public class Launch {
 	}
 
 	public static void main(String[] args) {
+		ArrayList<Robot> mesRobots = new ArrayList<>();
 		Robot r1 = new Robot(50, 50, 20, 20, Color.RED, "Robot 1");
 		Robot r2 = new Robot(400, 400, 20, 20, Color.BLUE, "Robot 2");
 		Robot.attributionAdversaire(r1, r2);
-		FrameWithMenu fwm = new FrameWithMenu(r1, r2);
+		mesRobots.add(r1);
+		mesRobots.add(r2);
+		FrameWithMenu fwm = new FrameWithMenu(mesRobots);
 		Launch l = new Launch();
 		l.run(fwm);
 

@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.AbstractAction;
@@ -24,8 +25,8 @@ import pluginsGraphisme.GraphismeSimple;
 public class FrameWithMenu {
 	JFrame frame;
 	private JPanel contentPane;
-	Robot r1;
-	Robot r2;
+
+	ArrayList<Robot> lesRobots;
 
 	Class attaque;
 	Class graphisme;
@@ -33,14 +34,12 @@ public class FrameWithMenu {
 	Class barreDeVie;
 	Class nomRobot;
 
-	FrameWithMenu(Robot r1,Robot r2) {
-		this.r1 = r1;
-		this.r2 = r2;
+	FrameWithMenu(ArrayList<Robot> robots) {
+		this.lesRobots = new ArrayList<>(robots);
 		attaque = new AttaqueSimple().getClass();
 		deplacement = new DeplacementSimple().getClass();
 		graphisme = new GraphismeSimple().getClass();
 	}
-	
 
 	void showFrame() {
 		if (frame == null) {
@@ -78,27 +77,7 @@ public class FrameWithMenu {
 
 		try {
 			r.load();
-//			List<Class> attaqueClass = r.getListePluginsAttaque();
-//			List<Class> deplacementClass = r.getListePluginsDeplacment();
 			List<Class> graphismeClass = r.getListePluginsGraphisme();
-
-//			for (final Class<?> classe : attaqueClass) {
-//				menuDynamic.add(new AbstractAction(classe.getName()) {
-//					public void actionPerformed(ActionEvent arg0) {
-//						System.out.println("Click sur plugin attaque : " + classe.getName());
-//					}
-//
-//				});
-//			}
-//			for (final Class<?> classe : deplacementClass) {
-//				menuDynamic.add(new AbstractAction(classe.getName()) {
-//					public void actionPerformed(ActionEvent arg0) {
-//						chargementDeplacement(classe);
-//						System.out.println("Click sur plugin deplacement : " + classe.getName());
-//					}
-//
-//				});
-//			}
 			for (final Class<?> classe : graphismeClass) {
 				menuDynamic.add(new AbstractAction(classe.getName()) {
 					public void actionPerformed(ActionEvent arg0) {
@@ -124,16 +103,15 @@ public class FrameWithMenu {
 
 				if (method.getAnnotation(Graphisme.class).nom().equals("BarreDeVie")) {
 					barreDeVie = classe;
-				} else if(method.getAnnotation(Graphisme.class).nom().equals("NomRobot")){
+				} else if (method.getAnnotation(Graphisme.class).nom().equals("NomRobot")) {
 					nomRobot = classe;
 				} else {
 					this.graphisme = classe;
 				}
-				if(r1.estVivant()) {
-					method.invoke(myInstance, new Object[] { r1, frame.getGraphics() });
-				}
-				if(r2.estVivant()) {
-					method.invoke(myInstance, new Object[] { r2, frame.getGraphics() });
+				for (Robot r : lesRobots) {
+					if (r.estVivant()) {
+						method.invoke(myInstance, new Object[] { r, frame.getGraphics() });
+					}
 				}
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 					| InvocationTargetException | SecurityException | NoSuchMethodException e) {
@@ -149,12 +127,10 @@ public class FrameWithMenu {
 			try {
 				myInstance = classe.getConstructors()[0].newInstance();
 				Method method = classe.getMethod("deplacement", new Class[] { Robot.class });
-
-				if(r1.estVivant()) {
-					method.invoke(myInstance, new Object[] { r1 });
-				}
-				if(r2.estVivant()) {
-					method.invoke(myInstance, new Object[] { r2 });
+				for (Robot r : lesRobots) {
+					if (r.estVivant()) {
+						method.invoke(myInstance, new Object[] { r, frame.getGraphics() });
+					}
 				}
 				frame.paintComponents(frame.getGraphics());
 				chargementGraphisme(graphisme);
@@ -167,18 +143,4 @@ public class FrameWithMenu {
 			}
 		}
 	}
-
-//	public static void main(String[] args) {
-//		FrameWithMenu fwm = new FrameWithMenu();
-//		fwm.showFrame();
-//
-//		while (true) {
-//			fwm.chargementDeplacement(fwm.deplacement);
-//			try {
-//				Thread.sleep(100);
-//			} catch (InterruptedException e) {
-//				e.printStackTrace();
-//			}
-//		}
-//	}
 }

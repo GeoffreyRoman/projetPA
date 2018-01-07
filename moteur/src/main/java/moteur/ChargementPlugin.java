@@ -17,11 +17,10 @@ public class ChargementPlugin {
 				myInstance = pluginClass.getConstructors()[0].newInstance();
 				Method method = pluginClass.getMethod("draw", new Class[] { Robot.class, Graphics.class });
 				// Pour tester, sinon aller chercher tous les robots du jeu.
-				if(f.r1.estVivant()) {
-					method.invoke(myInstance, new Object[] { f.r1, f.frame.getGraphics() });
-				}
-				if(f.r2.estVivant()) {
-					method.invoke(myInstance, new Object[] { f.r2, f.frame.getGraphics() });
+				for (Robot r : f.lesRobots) {
+					if (r.estVivant()) {
+						method.invoke(myInstance, new Object[] { r, f.frame.getGraphics() });
+					}
 				}
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 					| InvocationTargetException | SecurityException | NoSuchMethodException e) {
@@ -36,12 +35,10 @@ public class ChargementPlugin {
 			try {
 				myInstance = pluginClass.getConstructors()[0].newInstance();
 				Method method = pluginClass.getMethod("deplacement", new Class[] { Robot.class });
-
-				if(f.r1.estVivant()) {
-					method.invoke(myInstance, new Object[] { f.r1 });
-				}
-				if(f.r2.estVivant()) {
-					method.invoke(myInstance, new Object[] { f.r2 });
+				for (Robot r : f.lesRobots) {
+					if (r.estVivant()) {
+						method.invoke(myInstance, new Object[] { r });
+					}
 				}
 				f.frame.paintComponents(f.frame.getGraphics());
 				chargementGraphisme(f.graphisme, f);
@@ -54,27 +51,24 @@ public class ChargementPlugin {
 			}
 		}
 	}
-	
+
 	public static void chargementAttaque(Class pluginClass, FrameWithMenu f) {
 		if (pluginClass != null) {
 			Object myInstance;
 			try {
 				myInstance = pluginClass.getConstructors()[0].newInstance();
 				Method method = pluginClass.getMethod("attaque", new Class[] { Graphics.class, Projectile.class, Robot.class });
-
-				if(f.r1.estVivant()) {
-					method.invoke(myInstance, new Object[] { f.frame.getGraphics(), f.r1.getP(), f.r1.getP().getCible() });
+				for (Robot r : f.lesRobots) {
+					if (r.estVivant()) {
+						method.invoke(myInstance,
+								new Object[] { f.frame.getGraphics(), r.getP(), r.getP().getCible() });
+					}
 				}
-				if(f.r2.estVivant()) {
-					method.invoke(myInstance, new Object[] { f.frame.getGraphics(), f.r2.getP(), f.r2.getP().getCible() });
-				}
-
-
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 					| InvocationTargetException | SecurityException | NoSuchMethodException e) {
 				e.printStackTrace();
 			}
 		}
 	}
-	
+
 }
