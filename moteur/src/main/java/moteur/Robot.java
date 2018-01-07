@@ -114,6 +114,16 @@ public class Robot {
 	}
 
 	/**
+	 * Methode permettant a un Robot de recharger son energie
+	 */
+	public void gainEnergie() {
+		if (this.getEnergie() < 3) {
+			System.out.println(this.getNom() + " vient de gagner 1 point d'energie.");
+			setEnergie(this.getEnergie() + 1);
+		}
+	}
+
+	/**
 	 * Methode permettant de savoir si un robot est touche par un projectile
 	 * 
 	 * @param posXDebut
@@ -145,12 +155,13 @@ public class Robot {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * Methode permettant de s'affronter
+	 * 
 	 * @param r
 	 */
-	public static void attributionAdversaire(Robot r1, Robot r2){
+	public static void attributionAdversaire(Robot r1, Robot r2) {
 		r1.adversaire = r2;
 		r2.adversaire = r1;
 		r1.p = new Projectile(r1, r1.adversaire);

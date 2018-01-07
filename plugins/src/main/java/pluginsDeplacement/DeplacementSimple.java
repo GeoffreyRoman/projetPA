@@ -30,5 +30,13 @@ public class DeplacementSimple {
 		} else {
 			r.setY(r.getY() + (newY * (-1 + ((newY % 2) * 2))));
 		}
+		
+		/**
+		 * Le robot a une chance de regagner son energie
+		*/
+		int chance = 20; //Facteur chance : plus ce nombre est grand moins le robot n'a de chance de recuperer son energie
+		if(rnd.nextInt(chance) == 1){
+			r.gainEnergie();
+		}
 	}
 }

@@ -14,19 +14,19 @@ public class AttaqueSimple {
 
 	@Attaque(nom = "AttaqueSimple")
 	public void attaque(Graphics gr, Projectile p, Robot cible) {
-		gr.setColor(Color.GREEN);
+		gr.setColor(Color.BLACK);
 		int trajectoire;
 		if (cible.getX() >= p.getAttaquant().getX() - 50 && cible.getX() < p.getAttaquant().getX() + 50
 				&& (p.getAttaquant().getEnergie() - 2) >= 0) {
-			p.getAttaquant().consomationEnergie(1);
 			/**
 			 * Si la cible est en dessous du tireur
 			 */
 			if (cible.getY() <= p.getAttaquant().getY() + 200 && cible.getY() > p.getAttaquant().getY() - 50) {
+				p.getAttaquant().consomationEnergie(1);
 				trajectoire = 1; // Le projectile par vers le bas
 				p.setX(p.getAttaquant().getX() + 25);
 				p.setY(p.getAttaquant().getY() + 50);
-				gr.drawLine(p.getX(), p.getY(), p.getX(), p.getY() + p.getTaille());
+				gr.drawLine(p.getAttaquant().getX(), p.getAttaquant().getY(), p.getCible().getX(), p.getCible().getY());
 				if (p.getCible().robotTouche(p.getX(), p.getY(), p.getX(), p.getY() + p.getTaille(), trajectoire)) {
 					toucher(p);
 					System.out.println(p.getAttaquant().getNom() + " touche " + cible.getNom() + " en tirant vers le bas !");
@@ -38,7 +38,7 @@ public class AttaqueSimple {
 				trajectoire = 3; // Le projectile part vers le haut
 				p.setX(p.getAttaquant().getX() + 25);
 				p.setY(p.getAttaquant().getY());
-				gr.drawLine(p.getX(), p.getY(), p.getX(), p.getY() - p.getTaille());
+				gr.drawLine(p.getAttaquant().getX(), p.getAttaquant().getY(), p.getX(), p.getCible().getY() - p.getTaille());
 				if (p.getCible().robotTouche(p.getX(), p.getY(), p.getX(), p.getY() - p.getTaille(), trajectoire)) {
 					toucher(p);
 					System.out.println(p.getAttaquant().getNom() + " touche " + cible.getNom() + " en tirant vers le haut !");
@@ -47,15 +47,15 @@ public class AttaqueSimple {
 		}
 		if (cible.getY() >= p.getAttaquant().getY() - 50 && cible.getY() < p.getAttaquant().getY() + 50
 				&& (p.getAttaquant().getEnergie() - 2) >= 0) {
-			p.getAttaquant().consomationEnergie(1);
 			/**
 			 * Si la cible se trouve a droite du tireur
 			 */
 			if (cible.getX() <= p.getAttaquant().getX() + 200 && cible.getX() > p.getAttaquant().getX() + 50) {
+				p.getAttaquant().consomationEnergie(1);
 				trajectoire = 0; // Le projectile part a droite
 				p.setX(p.getAttaquant().getX() + 50);
 				p.setY(p.getAttaquant().getY() + 25);
-				gr.drawLine(p.getX(), p.getY(), p.getX() + p.getTaille(), p.getY());
+				gr.drawLine(p.getAttaquant().getX(), p.getAttaquant().getY(), p.getCible().getX(), p.getCible().getY());
 				if (p.getCible().robotTouche(p.getX(), p.getY(), p.getX() + p.getTaille(), p.getY(), trajectoire)) {
 					toucher(p);
 					System.out.println(p.getAttaquant().getNom() + " touche " + cible.getNom() + " en tirant vers la droite !");
@@ -67,7 +67,7 @@ public class AttaqueSimple {
 				trajectoire = 2; // Le projectile part a gauche
 				p.setX(p.getAttaquant().getX());
 				p.setY(p.getAttaquant().getY() + 25);
-				gr.drawLine(p.getX(), p.getY(), p.getX() - p.getTaille(), p.getY());
+				gr.drawLine(p.getAttaquant().getX(), p.getAttaquant().getY(), p.getCible().getX(), p.getCible().getY());
 				if (p.getCible().robotTouche(p.getX(), p.getY(), p.getX() - p.getTaille(), p.getY(), trajectoire)) {
 					toucher(p);
 					System.out.println(p.getAttaquant().getNom() + " touche " + cible.getNom() + " en tirant vers la gauche !");
