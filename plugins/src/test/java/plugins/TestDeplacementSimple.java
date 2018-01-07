@@ -12,7 +12,7 @@ import pluginsDeplacement.DeplacementSimple;
 public class TestDeplacementSimple {
 
 	/**
-	 * Test de la m�thode deplacement
+	 * Test de la methode deplacement
 	 */
 	@Test
 	public void testDeplacementAleatoire() {
