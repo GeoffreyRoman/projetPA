@@ -68,10 +68,6 @@ public class ChargementPlugin {
 				if(f.r2.estVivant()) {
 					method.invoke(myInstance, new Object[] { f.frame.getGraphics(), f.r2.getP(), f.r2.getP().getCible() });
 				}
-				f.frame.paintComponents(f.frame.getGraphics());
-				chargementGraphisme(f.graphisme, f);
-				chargementGraphisme(f.barreDeVie, f);
-				chargementGraphisme(f.nomRobot, f);
 
 
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
