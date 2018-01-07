@@ -17,8 +17,12 @@ public class ChargementPlugin {
 				myInstance = pluginClass.getConstructors()[0].newInstance();
 				Method method = pluginClass.getMethod("draw", new Class[] { Robot.class, Graphics.class });
 				// Pour tester, sinon aller chercher tous les robots du jeu.
-				method.invoke(myInstance, new Object[] { f.r1, f.frame.getGraphics() });
-				method.invoke(myInstance, new Object[] { f.r2, f.frame.getGraphics() });
+				if(f.r1.estVivant()) {
+					method.invoke(myInstance, new Object[] { f.r1, f.frame.getGraphics() });
+				}
+				if(f.r2.estVivant()) {
+					method.invoke(myInstance, new Object[] { f.r2, f.frame.getGraphics() });
+				}
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 					| InvocationTargetException | SecurityException | NoSuchMethodException e) {
 				e.printStackTrace();
@@ -33,8 +37,12 @@ public class ChargementPlugin {
 				myInstance = pluginClass.getConstructors()[0].newInstance();
 				Method method = pluginClass.getMethod("deplacement", new Class[] { Robot.class });
 
-				method.invoke(myInstance, new Object[] { f.r1 });
-				method.invoke(myInstance, new Object[] { f.r2 });
+				if(f.r1.estVivant()) {
+					method.invoke(myInstance, new Object[] { f.r1 });
+				}
+				if(f.r2.estVivant()) {
+					method.invoke(myInstance, new Object[] { f.r2 });
+				}
 				f.frame.paintComponents(f.frame.getGraphics());
 				chargementGraphisme(f.graphisme, f);
 				chargementGraphisme(f.barreDeVie, f);
@@ -54,8 +62,12 @@ public class ChargementPlugin {
 				myInstance = pluginClass.getConstructors()[0].newInstance();
 				Method method = pluginClass.getMethod("attaque", new Class[] { Graphics.class, Projectile.class, Robot.class });
 
-				method.invoke(myInstance, new Object[] { f.frame.getGraphics(), f.r1.getP(), f.r1.getP().getCible() });
-				method.invoke(myInstance, new Object[] { f.frame.getGraphics(), f.r2.getP(), f.r2.getP().getCible() });
+				if(f.r1.estVivant()) {
+					method.invoke(myInstance, new Object[] { f.frame.getGraphics(), f.r1.getP(), f.r1.getP().getCible() });
+				}
+				if(f.r2.estVivant()) {
+					method.invoke(myInstance, new Object[] { f.frame.getGraphics(), f.r2.getP(), f.r2.getP().getCible() });
+				}
 				f.frame.paintComponents(f.frame.getGraphics());
 				chargementGraphisme(f.graphisme, f);
 				chargementGraphisme(f.barreDeVie, f);

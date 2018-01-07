@@ -129,8 +129,12 @@ public class FrameWithMenu {
 				} else {
 					this.graphisme = classe;
 				}
-				method.invoke(myInstance, new Object[] { r1, frame.getGraphics() });
-				method.invoke(myInstance, new Object[] { r2, frame.getGraphics() });
+				if(r1.estVivant()) {
+					method.invoke(myInstance, new Object[] { r1, frame.getGraphics() });
+				}
+				if(r2.estVivant()) {
+					method.invoke(myInstance, new Object[] { r2, frame.getGraphics() });
+				}
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 					| InvocationTargetException | SecurityException | NoSuchMethodException e) {
 				e.printStackTrace();
@@ -146,8 +150,12 @@ public class FrameWithMenu {
 				myInstance = classe.getConstructors()[0].newInstance();
 				Method method = classe.getMethod("deplacement", new Class[] { Robot.class });
 
-				method.invoke(myInstance, new Object[] { r1 });
-				method.invoke(myInstance, new Object[] { r2 });
+				if(r1.estVivant()) {
+					method.invoke(myInstance, new Object[] { r1 });
+				}
+				if(r2.estVivant()) {
+					method.invoke(myInstance, new Object[] { r2 });
+				}
 				frame.paintComponents(frame.getGraphics());
 				chargementGraphisme(graphisme);
 				chargementGraphisme(barreDeVie);

@@ -103,6 +103,10 @@ public class Robot {
 	public void enleveVie(int degat) {
 		this.setVie(this.getVie() - degat);
 	}
+	
+	public boolean estVivant() {
+		return this.getVie() > 0;
+	}
 
 	/**
 	 * Methode permettant de consommer l'energie d'un robot
