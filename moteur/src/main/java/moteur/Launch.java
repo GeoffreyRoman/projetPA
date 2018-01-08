@@ -1,6 +1,7 @@
 package moteur;
 
 import java.awt.Color;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -17,6 +18,17 @@ public class Launch {
 				ChargementPlugin.chargementAttaque(fwm.attaque, fwm);
 			}
 			ChargementPlugin.chargementGraphisme(fwm.graphisme, fwm);
+			
+			/**
+			 * Test pour vérifier si un robot est mort
+			 */
+			for(Robot r : fwm.lesRobots){
+				if(!r.estVivant()){
+					FrameWithMenu.finishGame(r);
+					FrameWithMenu.closeFrame(fwm.frame);
+				}
+			}
+			
 			try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {

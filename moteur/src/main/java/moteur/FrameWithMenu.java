@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -142,5 +143,24 @@ public class FrameWithMenu {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	/**
+	 * ethode pour fermer une frame
+	 * @param f
+	 */
+	public static void closeFrame(JFrame f){
+		f.dispatchEvent(new WindowEvent(f, WindowEvent.WINDOW_CLOSING));
+	}
+	
+	/**
+	 * Methode pour annoncer la mort d'un robot
+	 * @param r
+	 */
+	public static void finishGame(Robot r){
+		System.out.println("----------------------------------");
+		System.out.println("PARTIE TERMINEE");
+		System.out.println(r.getNom() + " est mort !");
+		System.out.println("----------------------------------");
 	}
 }
