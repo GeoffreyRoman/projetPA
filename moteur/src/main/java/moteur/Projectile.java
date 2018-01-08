@@ -1,6 +1,8 @@
 package moteur;
 
-public class Projectile {
+import java.io.Serializable;
+
+public class Projectile implements Serializable {
 
 	private int x, y, taille, direction;
 	private Robot attaquant, cible;

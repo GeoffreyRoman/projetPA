@@ -2,8 +2,9 @@ package moteur;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.io.Serializable;
 
-public class Robot {
+public class Robot implements Serializable{
 	int x, y, widht, height, vie, energie;
 	Color c;
 	String nom;

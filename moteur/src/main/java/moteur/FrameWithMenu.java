@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ import pluginsAttaque.AttaqueSimple;
 import pluginsDeplacement.DeplacementSimple;
 import pluginsGraphisme.GraphismeSimple;
 
-public class FrameWithMenu {
+public class FrameWithMenu implements Serializable{
 	JFrame frame;
 	private JPanel contentPane;
 
@@ -65,9 +66,21 @@ public class FrameWithMenu {
 		JMenu menuDynamic = new JMenu("Plugins Graphiques");
 		bar.add(fileM);
 
-		fileM.add(new AbstractAction("Save") {
+		fileM.add(new AbstractAction("Sauvegarder") {
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("DoSaveAction:" + arg0);
+				Persistance.save(lesRobots, attaque, graphisme, deplacement, barreDeVie, nomRobot, "Sauvegarde");
+			}
+		});
+		
+		fileM.add(new AbstractAction("Charger") {
+			public void actionPerformed(ActionEvent arg0) {
+				Partie partie = Persistance.charger("Sauvegarde");
+				lesRobots = partie.getRobots();
+				attaque = partie.getAttaque();
+				graphisme = partie.getGraphisme();
+				deplacement = partie.getDeplacement();
+				barreDeVie = partie.getBarreDeVie();
+				nomRobot = partie.getNomRobot();
 			}
 		});
 
