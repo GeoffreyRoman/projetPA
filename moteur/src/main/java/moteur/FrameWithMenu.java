@@ -20,11 +20,11 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import annotation.Graphisme;
+import app.Serialisation;
 import gestionPlugins.Repository;
 import pluginsAttaque.AttaqueSimple;
 import pluginsDeplacement.DeplacementSimple;
 import pluginsGraphisme.GraphismeSimple;
-import sauvegarde.Persistance;
 
 public class FrameWithMenu implements Serializable{
 	public JFrame frame;
@@ -70,13 +70,13 @@ public class FrameWithMenu implements Serializable{
 
 		fileM.add(new AbstractAction("Sauvegarder") {
 			public void actionPerformed(ActionEvent arg0) {
-				Persistance.save(lesRobots, attaque, graphisme, deplacement, barreDeVie, nomRobot, "Sauvegarde");
+				Serialisation.save(lesRobots, attaque, graphisme, deplacement, barreDeVie, nomRobot, "Sauvegarde");
 			}
 		});
 		
 		fileM.add(new AbstractAction("Charger") {
 			public void actionPerformed(ActionEvent arg0) {
-				Partie partie = Persistance.charger("Sauvegarde");
+				Partie partie = Serialisation.charger("Sauvegarde");
 				lesRobots = partie.getRobots();
 				attaque = partie.getAttaque();
 				graphisme = partie.getGraphisme();
