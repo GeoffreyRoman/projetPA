@@ -1,4 +1,4 @@
-package moteur;
+package gestionPlugins;
 
 import java.awt.Graphics;
 import java.lang.reflect.InvocationTargetException;
@@ -7,6 +7,9 @@ import java.lang.reflect.Method;
 import javax.swing.JFrame;
 
 import annotation.Graphisme;
+import moteur.FrameWithMenu;
+import moteur.Projectile;
+import moteur.Robot;
 
 public class ChargementPlugin {
 

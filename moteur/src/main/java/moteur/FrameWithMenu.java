@@ -20,30 +20,32 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import annotation.Graphisme;
+import gestionPlugins.Repository;
 import pluginsAttaque.AttaqueSimple;
 import pluginsDeplacement.DeplacementSimple;
 import pluginsGraphisme.GraphismeSimple;
+import sauvegarde.Persistance;
 
 public class FrameWithMenu implements Serializable{
-	JFrame frame;
+	public JFrame frame;
 	private JPanel contentPane;
 
-	ArrayList<Robot> lesRobots;
+	public ArrayList<Robot> lesRobots;
 
-	Class attaque;
-	Class graphisme;
-	Class deplacement;
-	Class barreDeVie;
-	Class nomRobot;
+	public Class attaque;
+	public Class graphisme;
+	public Class deplacement;
+	public Class barreDeVie;
+	public Class nomRobot;
 
-	FrameWithMenu(ArrayList<Robot> robots) {
+	public FrameWithMenu(ArrayList<Robot> robots) {
 		this.lesRobots = new ArrayList<>(robots);
 		attaque = new AttaqueSimple().getClass();
 		deplacement = new DeplacementSimple().getClass();
 		graphisme = new GraphismeSimple().getClass();
 	}
 
-	void showFrame() {
+	public void showFrame() {
 		if (frame == null) {
 			frame = new JFrame("Robot War");
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

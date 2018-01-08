@@ -1,4 +1,4 @@
-package moteur;
+package sauvegarde;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -7,6 +7,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+
+import moteur.Partie;
+import moteur.Robot;
 
 public class Persistance {
 	

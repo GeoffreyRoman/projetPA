@@ -1,9 +1,13 @@
-package moteur;
+package app;
 
 import java.awt.Color;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.Random;
+
+import gestionPlugins.ChargementPlugin;
+import moteur.FrameWithMenu;
+import moteur.Robot;
 
 public class Launch {
 
