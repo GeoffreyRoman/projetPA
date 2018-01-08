@@ -20,4 +20,15 @@ public class AttaqueDistante {
 	public void toucher(Projectile p) {
 		p.getCible().enleveVie((int) (Math.random() * (degatMaxi - degatMini)) + degatMini);
 	}
+	/**
+	 * 
+	 * @param p
+	 * @return La distance entre le robot attaquant et le robot cible
+	 */
+	public int distance(Projectile p){
+		Robot attaquant = p.getAttaquant();
+		Robot cible = p.getCible();
+		int distance = Math.sqrt(Math.pow(attaquant.getX()-cible.getX(), 2)+Math.pow(attaquant.getY()-cible.getY(), b));
+		return distance;
+	}
 }
