@@ -25,6 +25,13 @@ public class AttaqueDistante {
 	 * @param p
 	 * @return La distance entre le robot attaquant et le robot cible
 	 */
+	public boolean sousPorteeDeTir(Projectile p){
+		if(distance(p) <= 500){
+			return true;
+		}
+		return false;
+	}
+	
 	public int distance(Projectile p){
 		Robot attaquant = p.getAttaquant();
 		Robot cible = p.getCible();
