@@ -1,4 +1,4 @@
-package sauvegarde;
+package app;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import moteur.Partie;
 import moteur.Robot;
 
-public class Persistance {
+public class Serialisation {
 	
     public static void save(ArrayList<Robot> robots, Class attaque, Class graphisme, 
     		Class deplacement, Class barreDeVie, Class nomRobot, String fileName) {
