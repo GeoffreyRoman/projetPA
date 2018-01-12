@@ -5,9 +5,9 @@ import java.util.Random;
 import annotation.Deplacement;
 import moteur.Robot;
 
+@Deplacement(nom = "DeplacementSimple")
 public class DeplacementSimple {
 
-	@Deplacement(nom = "DeplacementSimple")
 	public void deplacement(Robot r) {
 		int arenaXMax = 450;
 		int arenaYMax = 450;

@@ -7,12 +7,12 @@ import annotation.Attaque;
 import moteur.Projectile;
 import moteur.Robot;
 
+@Attaque(nom = "AttaqueDistante")
 public class AttaqueDistante {
 	
 	private static final int degatMini = 1;
 	private static final int degatMaxi = 2;
 	
-	@Attaque(nom = "AttaqueDistante")
 	public void attaqueDistante(Graphics gr, Projectile p, Robot cible){
 		gr.setColor(Color.ORANGE);
 		if(sousPorteeDeTir(p)){

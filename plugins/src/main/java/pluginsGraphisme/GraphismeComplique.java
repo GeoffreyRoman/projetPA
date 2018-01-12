@@ -7,8 +7,9 @@ import java.awt.Graphics;
 import annotation.Graphisme;
 import moteur.Robot;
 
+@Graphisme(nom = "GraphismeComplique")
 public class GraphismeComplique {
-	@Graphisme(nom = "GraphismeComplique")
+	
 	public void draw(Robot r,Graphics g){
 		g.setColor(r.getColor());
 		g.fillRect(r.getX(), r.getY(), 40, 60);

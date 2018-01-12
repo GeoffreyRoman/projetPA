@@ -65,7 +65,7 @@ public class FrameWithMenu implements Serializable{
 		JMenuBar bar = new JMenuBar();
 		frame.setJMenuBar(bar);
 		JMenu fileM = new JMenu("Fichier");
-		JMenu menuDynamic = new JMenu("Plugins Graphiques");
+		JMenu menuDynamic = new JMenu("Plugins");
 		bar.add(fileM);
 
 		fileM.add(new AbstractAction("Sauvegarder") {
@@ -93,7 +93,27 @@ public class FrameWithMenu implements Serializable{
 
 		try {
 			r.load();
+			List<Class> attaqueClass = r.getListePluginsAttaque();
+			List<Class> deplacementClass = r.getListePluginsDeplacment();
 			List<Class> graphismeClass = r.getListePluginsGraphisme();
+
+			for (final Class<?> classe : attaqueClass) {
+				menuDynamic.add(new AbstractAction(classe.getName()) {
+					public void actionPerformed(ActionEvent arg0) {
+						System.out.println("Click sur plugin attaque : " + classe.getName());
+					}
+
+				});
+			}
+			for (final Class<?> classe : deplacementClass) {
+				menuDynamic.add(new AbstractAction(classe.getName()) {
+					public void actionPerformed(ActionEvent arg0) {
+						chargementDeplacement(classe);
+						System.out.println("Click sur plugin deplacement : " + classe.getName());
+					}
+
+				});
+			}
 			for (final Class<?> classe : graphismeClass) {
 				menuDynamic.add(new AbstractAction(classe.getName()) {
 					public void actionPerformed(ActionEvent arg0) {
@@ -117,9 +137,9 @@ public class FrameWithMenu implements Serializable{
 				Method method = classe.getMethod("draw", new Class[] { Robot.class, Graphics.class });
 				// Pour tester, sinon aller chercher tous les robots du jeu.
 
-				if (method.getAnnotation(Graphisme.class).nom().equals("BarreDeVie")) {
+				if (((Graphisme) classe.getAnnotation(Graphisme.class)).nom().equals("BarreDeVie")) {
 					barreDeVie = classe;
-				} else if (method.getAnnotation(Graphisme.class).nom().equals("NomRobot")) {
+				} else if (((Graphisme) classe.getAnnotation(Graphisme.class)).nom().equals("NomRobot")) {
 					nomRobot = classe;
 				} else {
 					this.graphisme = classe;
