@@ -13,7 +13,7 @@ public class AttaqueDistante {
 	private static final int degatMini = 1;
 	private static final int degatMaxi = 2;
 	
-	public void attaqueDistante(Graphics gr, Projectile p, Robot cible){
+	public void attaque(Graphics gr, Projectile p, Robot cible){
 		gr.setColor(Color.ORANGE);
 		if(sousPorteeDeTir(p)){
 			int trajectoire;
