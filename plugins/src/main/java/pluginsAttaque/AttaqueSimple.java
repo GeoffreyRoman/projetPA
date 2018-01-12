@@ -1,18 +1,18 @@
 package pluginsAttaque;
 
 import java.awt.Color;
+
 import java.awt.Graphics;
 
 import annotation.Attaque;
 import moteur.Projectile;
 import moteur.Robot;
-
+@Attaque(nom = "AttaqueSimple")
 public class AttaqueSimple {
 
 	private static final int degatMini = 1;
 	private static final int degatMaxi = 5;
 
-	@Attaque(nom = "AttaqueSimple")
 	public void attaque(Graphics gr, Projectile p, Robot cible) {
 		gr.setColor(Color.BLACK);
 		int trajectoire;

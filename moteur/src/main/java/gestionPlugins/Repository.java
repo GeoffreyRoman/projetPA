@@ -41,27 +41,24 @@ public class Repository {
 				fileName = fileName.replaceAll("classes", "").substring(2);
 				PluginLoader mcl = new PluginLoader(dir);
 				Class<?> classe = mcl.loadClass(fileName);
-				Method[] methods = classe.getMethods();
-				for (Method method : methods) {
-					Annotation annotationAttaque = method.getAnnotation(Attaque.class);
-					Annotation annotationDeplacement = method.getAnnotation(Deplacement.class);
-					Annotation annotationGraphisme = method.getAnnotation(Graphisme.class);
-					Annotation[] a = method.getAnnotations();
-					if (annotationAttaque != null) {
-						listePluginsAttaque.add(classe);
-						System.out.println(annotationAttaque);
-						System.out.println(classe.getName());
-					}
-					if (annotationDeplacement != null) {
-						listePluginsDeplacment.add(classe);
-						System.out.println(annotationDeplacement);
-						System.out.println(classe.getName());
-					}
-					if (annotationGraphisme != null) {
-						listePluginsGraphisme.add(classe);
-						System.out.println(annotationGraphisme);
-						System.out.println(classe.getName());
-					}
+				Annotation annotationAttaque = classe.getAnnotation(Attaque.class);
+				Annotation annotationDeplacement = classe.getAnnotation(Deplacement.class);
+				Annotation annotationGraphisme = classe.getAnnotation(Graphisme.class);
+				Annotation[] a = classe.getAnnotations();
+				if (annotationAttaque != null) {
+					listePluginsAttaque.add(classe);
+					System.out.println(annotationAttaque);
+					System.out.println(classe.getName());
+				}
+				if (annotationDeplacement != null) {
+					listePluginsDeplacment.add(classe);
+					System.out.println(annotationDeplacement);
+					System.out.println(classe.getName());
+				}
+				if (annotationGraphisme != null) {
+					listePluginsGraphisme.add(classe);
+					System.out.println(annotationGraphisme);
+					System.out.println(classe.getName());
 				}
 				classes.add(classe);
 			}

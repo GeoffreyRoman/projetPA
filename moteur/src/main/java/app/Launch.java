@@ -24,7 +24,7 @@ public class Launch {
 			ChargementPlugin.chargementGraphisme(fwm.graphisme, fwm);
 			
 			/**
-			 * Test pour vérifier si un robot est mort
+			 * Test pour verifier si un robot est mort
 			 */
 			for(Robot r : fwm.lesRobots){
 				if(!r.estVivant()){
