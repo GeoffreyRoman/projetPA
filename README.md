@@ -9,7 +9,7 @@ Dans une arène de combat en 2D, vue de dessus, des robots s'affrontent, gérés
 
 Une fois le projet récupéré, il vous suffit de placer un terminal ayant pour position la racine du projet. Par la suite vous suffira d’exécuter cette commande :
 
-<i>java -jar moteur/test.jar</i>
+<i>java -jar moteur/launch.jar</i>
 
 --- Conception ---
 
